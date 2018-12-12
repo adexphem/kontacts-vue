@@ -25,7 +25,7 @@ export default new Router({
       component: EditMember
     },
     {
-      path: '/:member_id',
+      path: '/view/:member_id',
       name: 'view-member',
       component: ViewMember
     }
