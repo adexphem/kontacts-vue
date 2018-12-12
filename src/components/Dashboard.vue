@@ -9,7 +9,7 @@
         {{member.name}}
         <router-link
           class="secondary-content"
-          v-bind:to="{name: 'view-member', params: {member_id: member.id}}"
+          v-bind:to="{name: 'view-member', params: {member_id: member.member_id}}"
         >
           <i class="fa fa-eye"></i>
         </router-link>
