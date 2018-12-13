@@ -11,6 +11,16 @@
     </ul>
     <router-link to="/" class="btn grey">Back</router-link>
     <button class="btn red" @click="deleteMember">Delete</button>
+    <div class="loading" v-if="loading"></div>
+
+    <div class="fixed-action-btn">
+      <router-link
+        v-bind:to="{name: 'edit-member', params: {member_id: member_id}}"
+        class="btn-floating btn-large green"
+      >
+        <i class="fa fa-edit"></i>
+      </router-link>
+    </div>
   </div>
 </template>
 
@@ -24,7 +34,8 @@ export default {
       dept: null,
       name: null,
       position: null,
-      notFound: { status: false }
+      notFound: { status: false },
+      loading: false
     };
   },
   beforeRouteEnter(to, from, next) {
@@ -63,12 +74,14 @@ export default {
         });
     },
     deleteMember() {
+      this.loading = true;
       db.collection("members")
-        .where("member_id", "==", to.params.member_id)
+        .where("member_id", "==", this.$route.params.member_id)
         .get()
         .then(querySnapshot => {
           querySnapshot.forEach(doc => {
             doc.ref.delete();
+            this.loading = false;
             this.$router.push("/");
           });
         });
