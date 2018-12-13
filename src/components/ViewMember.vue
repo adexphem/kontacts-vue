@@ -2,10 +2,15 @@
   <div id="view-member">
     <div class="content" v-show="notFound.status">Not Found</div>
     <ul class="collection with-header">
-      <li class="collection-item">
+      <li class="collection-header">
         <h4>{{name}}</h4>
       </li>
+      <li class="collection-item">Employee ID: {{member_id}}</li>
+      <li class="collection-item">Employee Dept: {{dept}}</li>
+      <li class="collection-item">Employee Post: {{position}}</li>
     </ul>
+    <router-link to="/" class="btn grey">Back</router-link>
+    <button class="btn red" @click="deleteMember">Delete</button>
   </div>
 </template>
 
@@ -55,6 +60,17 @@ export default {
         })
         .catch(error => {
           this.notFound.status = true;
+        });
+    },
+    deleteMember() {
+      db.collection("members")
+        .where("member_id", "==", to.params.member_id)
+        .get()
+        .then(querySnapshot => {
+          querySnapshot.forEach(doc => {
+            doc.ref.delete();
+            this.$router.push("/");
+          });
         });
     }
   }
