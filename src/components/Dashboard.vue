@@ -9,7 +9,7 @@
         <div class="chip">{{member.dept}}</div>
         {{member.name}}
         <router-link
-          class="secondary-content"
+          class="secondary-content view"
           v-bind:to="{name: 'view-member', params: {member_id: member.member_id}}"
         >
           <i class="fa fa-eye"></i>
@@ -60,3 +60,20 @@ export default {
   }
 };
 </script>
+
+<style>
+.view {
+  background: #26a69a;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  margin-top: 10px;
+  color: white;
+  text-align: center;
+  font-size: 12px;
+}
+
+.collection.with-header .collection-item {
+  padding-left: 15px;
+}
+</style>

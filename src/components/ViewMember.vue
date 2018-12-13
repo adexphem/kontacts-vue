@@ -5,9 +5,9 @@
       <li class="collection-header">
         <h4>{{name}}</h4>
       </li>
-      <li class="collection-item">Employee ID: {{member_id}}</li>
-      <li class="collection-item">Employee Dept: {{dept}}</li>
-      <li class="collection-item">Employee Post: {{position}}</li>
+      <li class="collection-item">Member ID: {{member_id}}</li>
+      <li class="collection-item">Member Dept: {{dept}}</li>
+      <li class="collection-item">Member Post: {{position}}</li>
     </ul>
     <router-link to="/" class="btn grey">Back</router-link>
     <button class="btn red" @click="deleteMember">Delete</button>
