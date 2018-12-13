@@ -17,7 +17,7 @@
         </div>
         <div class="row">
           <div class="input-field col s12">
-            <input type="text" v-model="postion" required>
+            <input type="text" v-model="position" required>
             <label>Member Position:</label>
           </div>
         </div>
@@ -53,6 +53,8 @@ export default {
     this.generateId();
   },
   mounted() {
+    this.loading = true;
+    if (this.member_id != null) this.loading = false;
     this.$refs.member_id.focus();
   },
   methods: {

@@ -16,9 +16,9 @@
     <div class="fixed-action-btn">
       <router-link
         v-bind:to="{name: 'edit-member', params: {member_id: member_id}}"
-        class="btn-floating btn-large green"
+        class="btn-floating btn-large red"
       >
-        <i class="fa fa-edit"></i>
+        <i class="fa fa-pencil"></i>
       </router-link>
     </div>
   </div>
@@ -48,7 +48,7 @@ export default {
             vm.member_id = doc.data().member_id;
             vm.dept = doc.data().dept;
             vm.name = doc.data().name;
-            vm.position = doc.data().position;
+            vm.position = doc.data().post;
           });
         });
       });
