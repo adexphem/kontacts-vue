@@ -75,14 +75,20 @@ export default {
         .get()
         .then(querySnapshot => {
           querySnapshot.forEach(doc => {
-            doc.ref.update({
-              name: this.name,
-              post: this.position,
-              dept: this.dept
-            });
-
-            this.loading = false;
-            this.$router.push("/");
+            doc.ref
+              .update({
+                name: this.name,
+                post: this.position,
+                dept: this.dept
+              })
+              .then(res => {
+                this.loading = false;
+                this.$router.push({
+                  name: "view-member",
+                  params: { member_id: this.member_id }
+                });
+              })
+              .catch(error => console.log(error));
           });
         })
         .catch(error => console.log(error));

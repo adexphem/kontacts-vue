@@ -4,6 +4,7 @@
       <li class="collection-header">
         <h4>Member List</h4>
       </li>
+      <li class="loading" v-if="loading"></li>
       <li v-for="member in member_list" v-bind:key="member.id" class="collection-item">
         <div class="chip">{{member.dept}}</div>
         {{member.name}}
@@ -31,10 +32,13 @@ export default {
   name: "dashboard",
   data() {
     return {
-      member_list: []
+      member_list: [],
+      loading: false
     };
   },
   created() {
+    this.loading = true;
+
     db.collection("members")
       .orderBy("dept")
       .get()
@@ -48,9 +52,11 @@ export default {
             position: doc.data().position
           };
 
+          this.loading = false;
           this.member_list.push(data);
         });
-      });
+      })
+      .catch(error => (this.loading = false));
   }
 };
 </script>
